@@ -17,6 +17,7 @@ body {
   font-family: "General Sans", sans-serif;
   margin: 0;
   padding: 50px;
+  margin-left: auto;
 }
 /*Header*/
 .instructions span {
@@ -93,8 +94,9 @@ main {
   background-color: var(--containergrey);
   margin-top: 3px;
 }
-.contentContainer .deletebtn {
-  width: 30px;
+
+.contentContainer .containerbtn {
+  width: 32px;
   height: 26px;
   margin: 0;
   background-color: var(--containergrey);
@@ -103,8 +105,9 @@ main {
   color: var(--containergrey);
   margin-left: auto;
 }
-.contentContainer .deletebtn:hover {
+.contentContainer .containerbtn:hover {
   color: var(--darktext);
+  background-color: var(--containerhover);
 }
 .content button:hover,
 textarea:hover {
@@ -121,4 +124,17 @@ textarea:focus {
   border-radius: 3px;
   width: 100%;
   resize: none;
+  data-gramm: "false";
+  data-gramm_editor: "false";
+  data-enable-grammarly: "false";
+}
+@media only screen and (max-width: 1000px) {
+  main {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  Header {
+    font-size: medium;
+  }
 }
