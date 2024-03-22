@@ -8,7 +8,7 @@
       href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,700&display=swap"
       rel="stylesheet"
     />
-    <script src="script.js"></script>
+
     <title>Todolist</title>
   </head>
   <body>
@@ -30,8 +30,8 @@
           <p class="headerText"><span class="todo-btn">&#8226</span> To do</p><p class="counter"></p>
         </div>
         <div class="content">
-          <button>+ New</button><br>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <button class="new-taskbutton">+ New</button><br>
+
         </div>
       </div>
       <div class="taskComponent progress">
@@ -39,20 +39,23 @@
           <p class="headerText"><span class="progress-btn">&#8226</span> In Progress</p><p class="counter"></p>
         </div>
         <div class="content">
-          <button>+ New</button><br>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
-        </div>
+          <button class="new-taskbutton">+ New</button><br>        </div>
       </div>
       <div class="taskComponent done">
         <div class="doneHeader head">
           <p class="headerText"><span class="done-btn">&#8226</span> Done</p><p class="counter"></p>
         </div>
         <div class="content">
-          <button>+ New</button><br>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <button class="new-taskbutton">+ New</button><br>
+
         </div>
       </div>
     </main>
     <footer></footer>
+    <script>window.onload = function() {
+      addTextField();
+    };</script>
+        <script src="script.js"></script>
+    
   </body>
 </html>
