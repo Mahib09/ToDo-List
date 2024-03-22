@@ -4,20 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,700&display=swap"
+      rel="stylesheet"
+    />
     <script src="script.js"></script>
     <title>Todolist</title>
   </head>
   <body>
     <header>
-      <h1>Task List</h1>
-      <p>Use this template to track your personal tasks.</p>
-      <p>Click + New to create a new task directly on this board.</p>
-      <p>Click an existing task to add additional context or subtasks.</p>
+      <h1 class="heading1">Task List</h1>
+      <p class="instructions">
+        Use this template to track your personal tasks.
+      </p>
+      <p class="instructions">
+        Click <span>+ New</span> to create a new task directly on this board.
+      </p>
+      <p class="instructions">
+        Click an existing task to add additional context or subtasks.
+      </p>
     </header>
     <main>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div class="taskComponent todo">
+        <div class="todoHeader head">
+          <p class="headerText"><span class="todo-btn">&#8226</span> To do</p><p class="counter"></p>
+        </div>
+        <div class="content">
+          <button>+ New</button><br>
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="taskComponent progress">
+        <div class="progressHeader head">
+          <p class="headerText"><span class="progress-btn">&#8226</span> In Progress</p><p class="counter"></p>
+        </div>
+        <div class="content">
+          <button>+ New</button><br>
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="taskComponent done">
+        <div class="doneHeader head">
+          <p class="headerText"><span class="done-btn">&#8226</span> Done</p><p class="counter"></p>
+        </div>
+        <div class="content">
+          <button>+ New</button><br>
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+        </div>
+      </div>
     </main>
     <footer></footer>
   </body>
