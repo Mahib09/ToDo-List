@@ -86,6 +86,26 @@ main {
   transition: all 0.1s ease-in-out;
   margin-top: 3px;
 }
+.contentContainer {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  background-color: var(--containergrey);
+  margin-top: 3px;
+}
+.contentContainer .deletebtn {
+  width: 30px;
+  height: 26px;
+  margin: 0;
+  background-color: var(--containergrey);
+  border-radius: 0;
+  text-align: center;
+  color: var(--containergrey);
+  margin-left: auto;
+}
+.contentContainer .deletebtn:hover {
+  color: var(--darktext);
+}
 .content button:hover,
 textarea:hover {
   background-color: var(--containerhover);
@@ -96,11 +116,9 @@ textarea:focus {
   border: none;
   outline: none;
   color: var(--maintext);
-  height: 27px;
+  height: 25px;
   font-size: 0.9rem;
   border-radius: 3px;
   width: 100%;
-  margin: 3px 0 0 0;
   resize: none;
-  padding: 1px;
 }

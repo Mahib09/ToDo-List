@@ -9,13 +9,19 @@
 //     }
 //   });
 // }
+window.onload = addTextField;
+
 function addTextField() {
   const buttons = document.querySelectorAll(".new-taskbutton");
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       const content = button.closest(".content");
-      const newText = document.createElement("textarea");
-      content.insertBefore(newText, button);
+      const contentContainer = document.createElement("div");
+      contentContainer.setAttribute("class", "contentContainer");
+      const newContent = `<textarea name="" id="" cols="30" rows="10"></textarea>
+      <button class="deletebtn">X</button>`;
+      contentContainer.innerHTML = newContent;
+      content.insertBefore(contentContainer, button);
     });
   });
 }
