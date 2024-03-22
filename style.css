@@ -1,0 +1,18 @@
+:root {
+  --basegrey: #191919;
+  --containergrey: #262626;
+  --containerhover: #2d2d2d;
+  --red: #cd4945;
+  --darkred: #6e3630;
+  --blue: #2e7cd1;
+  --darkblue: #28456c;
+  --green: #2d9964;
+  --darkgreen: #2b593f;
+  --maintext: #d4d4d4;
+  --darktext: #555555;
+}
+body {
+  background-color: var(--basegrey);
+  color: var(--text);
+  font-family: sans-serif;
+}
