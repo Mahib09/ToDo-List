@@ -10,8 +10,8 @@ function addTextField() {
       const content = button.closest(".content");
       const contentContainer = document.createElement("div");
       contentContainer.setAttribute("class", "contentContainer");
-      const newContent = `<textarea name="" id="" cols="30" rows="10" placeholder="Type a Name"></textarea> <button class="containerbtn arrowbtn">-></button>
-            <button class="containerbtn deletebtn">X</button>`;
+      const newContent = `<textarea name="" id="" cols="30" rows="10" placeholder="Type a Name"></textarea> <button class="containerbtn arrowbtn">&#8594;</button>
+            <button class="containerbtn deletebtn">&#10540;</button>`;
       contentContainer.innerHTML = newContent;
       content.insertBefore(contentContainer, button);
     });

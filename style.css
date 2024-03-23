@@ -26,12 +26,19 @@ body {
   color: var(--red);
   border-radius: 4px;
 }
+.header-end {
+  display: flex;
+  gap: 5px;
+}
+.header-end button {
+  margin-left: auto;
+}
 /*main*/
 main {
   display: flex;
   height: 80vh;
   justify-self: start;
-  gap: 30px;
+  gap: 0px;
 }
 .taskComponent {
   width: 350px;
@@ -83,6 +90,7 @@ main {
   color: var(--basegrey);
   font-size: 1.2rem;
   margin-left: auto;
+  margin-right: 50px;
 }
 .headComponent .new:hover {
   background-color: var(--containerhover);
