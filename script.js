@@ -16,6 +16,13 @@ function addTextField() {
       content.insertBefore(contentContainer, button);
 
       //counter
+      const parentComponent = button.closest(".taskComponent");
+      const counterbtn = parentComponent.querySelector(".counter");
+      const allContent = parentComponent.querySelectorAll(
+        ".contentContainer textarea"
+      );
+      var counterValue = Number(allContent.length);
+      counterbtn.innerHTML = counterValue;
     });
   });
 }
@@ -99,8 +106,7 @@ document.addEventListener("click", function (event) {
         ".contentContainer textarea"
       );
       var counterValue = Number(allContent.length);
-      var newCount = counterValue;
-      counterbtn.innerHTML = newCount;
+      counterbtn.innerHTML = counterValue;
     }
     addTextField();
   }
