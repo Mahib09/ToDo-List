@@ -30,7 +30,7 @@ body {
   display: flex;
   gap: 5px;
 }
-.header-end button {
+.header-end button:last-child {
   margin-left: auto;
 }
 /*main*/
