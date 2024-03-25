@@ -1,31 +1,36 @@
-window.onload = function () {
-  addTextField();
-};
-
 //newtask Button +New
-function addTextField() {
-  const buttons = document.querySelectorAll(".new-taskbutton");
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const content = button.closest(".content");
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("new-taskbutton")) {
+    function addTextField() {
+      const newB = event.target;
+      const ansestor = newB.closest(".taskComponent");
+      if (ansestor.classList.contains("todo")) {
+        content = document.querySelector(".todo .content");
+      } else if (ansestor.classList.contains("progress")) {
+        content = document.querySelector(".progress .content");
+      } else {
+        content = document.querySelector(".done .content");
+      }
+      const nearBtn = content.querySelector(".new-taskbutton");
       const contentContainer = document.createElement("div");
       contentContainer.setAttribute("class", "contentContainer");
-      const newContent = `<textarea name="" id="" cols="30" rows="10" placeholder="Type a Name"></textarea> <button class="containerbtn arrowbtn">&#8594;</button>
-            <button class="containerbtn deletebtn">&#10540;</button>`;
+      contentContainer.setAttribute("draggable", "true");
+      const newContent = `<textarea name="" id="" cols="30" rows="10" placeholder="Type a Name"></textarea> <button class="containerbtn arrowbtn">-></button>
+            <button class="containerbtn deletebtn">X</button>`;
       contentContainer.innerHTML = newContent;
-      content.insertBefore(contentContainer, button);
-
+      content.insertBefore(contentContainer, nearBtn);
       //counter
-      const parentComponent = button.closest(".taskComponent");
-      const counterbtn = parentComponent.querySelector(".counter");
-      const allContent = parentComponent.querySelectorAll(
+      const NearestTaskcomponent = contentContainer.closest(".taskComponent");
+      const counterbtn = NearestTaskcomponent.querySelector(".counter");
+      const allContent = NearestTaskcomponent.querySelectorAll(
         ".contentContainer textarea"
       );
       var counterValue = Number(allContent.length);
       counterbtn.innerHTML = counterValue;
-    });
-  });
-}
+    }
+    addTextField();
+  }
+});
 
 //Delete Button x
 document.addEventListener("click", function (event) {
@@ -95,6 +100,7 @@ document.addEventListener("click", function (event) {
       const nearBtn = content.querySelector(".new-taskbutton");
       const contentContainer = document.createElement("div");
       contentContainer.setAttribute("class", "contentContainer");
+      contentContainer.setAttribute("draggable", "true");
       const newContent = `<textarea name="" id="" cols="30" rows="10" placeholder="Type a Name"></textarea> <button class="containerbtn arrowbtn">-></button>
             <button class="containerbtn deletebtn">X</button>`;
       contentContainer.innerHTML = newContent;
@@ -111,16 +117,27 @@ document.addEventListener("click", function (event) {
     addTextField();
   }
 });
-// window.addEventListener("load", (e) => {
-//   counter();
-// });
-function counter() {
-  const counterButton = document.querySelectorAll("counter");
-  counterButton.forEach((e) => {
-    const main = e.closest(".taskComponent");
-    console.log(main);
-    const allContent = main.querySelectorAll(".contentContainer");
-    var count = allContent.length;
-    e.innerHTML = count;
+
+//Draggable container
+document.addEventListener("DOMContentLoaded", function () {
+  drag(); // Call the drag function after the DOM is loaded
+});
+function drag() {
+  const draggables = document.querySelectorAll(".contentContainer");
+  const dragContainers = document.querySelectorAll(".content");
+  draggables.forEach((draggable) => {
+    draggable.addEventListener("dragstart", () => {
+      draggable.classList.add("dragging");
+    });
+    draggable.addEventListener("dragend", () => {
+      draggable.classList.remove("dragging");
+    });
+  });
+  dragContainers.forEach((container) => {
+    container.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      const draggable = document.querySelector(".dragging");
+      container.appendChild(draggable);
+    });
   });
 }
