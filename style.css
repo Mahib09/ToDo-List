@@ -139,9 +139,11 @@ main {
   cursor: move;
 }
 .contentContainer .dragging {
-  background-color: blue;
+  opacity: 0.5;
 }
 
+.dragend {
+}
 .contentContainer .containerbtn {
   width: 32px;
   height: 26px;
