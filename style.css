@@ -33,6 +33,66 @@ body {
 .header-end button:last-child {
   margin-left: auto;
 }
+/*delete all confirmation block*/
+.model {
+  position: absolute;
+  background-color: rgba(25, 25, 25, 0.516);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  margin: 0;
+  padding: -50px;
+  justify-content: center;
+  align-items: center;
+  margin: -50px;
+}
+.show {
+  visibility: visible;
+}
+.hide {
+  visibility: hidden;
+}
+.deleteallConfirmation {
+  width: 300px;
+  padding: 20px 30px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--containergrey);
+  border-radius: 10px;
+}
+.confirmationText {
+  text-align: center;
+}
+.confirmationDelete {
+  width: 90%;
+  height: 40px;
+  margin: 10px 0px 0 0px;
+  background-color: var(--containergrey);
+  border: 2px solid var(--containerhover);
+  border-radius: 4px;
+  color: var(--red);
+  font-size: 1rem;
+}
+.confirmationDelete:hover {
+  background-color: #352626;
+  border-color: var(--red);
+}
+.confirmationCancel {
+  width: 90%;
+  margin: 10px;
+  height: 40px;
+  background-color: var(--containergrey);
+  border: 2px solid var(--containerhover);
+  border-radius: 4px;
+  color: var(--maintext);
+  font-size: 1rem;
+}
+.confirmationCancel:hover {
+  background-color: var(--containerhover);
+  border-color: var(--maintext);
+}
 /*main*/
 main {
   display: flex;
@@ -82,16 +142,19 @@ main {
 .headComponent .counter:hover {
   background-color: var(--containerhover);
 }
-.headComponent .new {
+.headComponent .new,
+.headComponent .deleteAll {
   background-color: var(--basegrey);
   height: 25px;
   width: 25px;
   border: none;
   color: var(--basegrey);
   font-size: 1.2rem;
-  margin-left: auto;
   margin-right: 50px;
   cursor: pointer;
+}
+.headComponent .deleteAll {
+  margin: 0 0 0 auto;
 }
 .headComponent .new:hover {
   background-color: var(--containerhover);
@@ -99,6 +162,9 @@ main {
 }
 .headComponent:hover {
   .new {
+    color: var(--darktext);
+  }
+  .deleteAll {
     color: var(--darktext);
   }
 }

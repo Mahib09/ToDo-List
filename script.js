@@ -79,6 +79,40 @@ document.addEventListener("click", function (event) {
     moveitem();
   }
 });
+//deleteall
+let content;
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("fa")) {
+    const model = document.querySelector(".model");
+    model.classList.remove("hide");
+    model.classList.add("show");
+    const contentContainer = e.target.closest(".taskComponent");
+    const counterbtn = contentContainer.querySelector(".counter");
+    const contentholder = contentContainer.querySelector(".content");
+    content = contentholder.querySelectorAll(".contentContainer");
+    const buttonholder = document.querySelector(".deleteallConfirmation");
+    const confirmbtn = document.querySelector(".confirmationDelete");
+    const cancelbtn = document.querySelector(".confirmationCancel");
+    document.addEventListener("click", function (event) {
+      if (
+        !confirmbtn.contains(event.target) &&
+        cancelbtn.contains(event.target) &&
+        model.contains(event.target)
+      ) {
+        model.classList.remove("show");
+        model.classList.add("hide");
+        content = null;
+      } else if (confirmbtn.contains(event.target)) {
+        content.forEach((container) => {
+          container.remove();
+        });
+        counterbtn.innerHTML = 0;
+        model.classList.remove("show");
+        model.classList.add("hide");
+      }
+    });
+  }
+});
 
 //Draggable container
 document.addEventListener("DOMContentLoaded", function () {

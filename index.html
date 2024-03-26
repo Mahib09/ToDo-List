@@ -8,10 +8,20 @@
       href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="script.js"></script>
     <title>To do List | Mahib</title>
   </head>
   <body>
+    
+      <div class="model hide">
+        <div class="deleteallConfirmation">
+          <p class="confirmationText">Are you sure? All pages inside this group will be deleted.</p>
+          <button class="confirmationDelete">Delete</button>
+          <button class="confirmationCancel">Cancel</button>
+        </div>
+      </div>
+
     <header>
       <h1 class="heading1">Task List</h1>
       <p class="instructions">
@@ -40,6 +50,7 @@
             <p class="headerText"><span class="todo-btn">&#8226 </span> To do</p>
           </div>
           <button class="counter">0</button>
+          <button class="deleteAll"><i class="fa fa-trash"></i></button>
           <button class="new">&#43;</button>
         </div>
         
@@ -56,6 +67,7 @@
             <p class="headerText"><span class="progress-btn">&#8226 </span> In Progress</p>
           </div>
           <button class="counter">0</button>
+          <button class="deleteAll"><i class="fa fa-trash"></i></button>
           <button class="new">&#43;</button>
         </div>
         <div class="content">
@@ -70,6 +82,7 @@
             <p class="headerText"><span class="done-btn">&#8226 </span> Done</p>
             </div>
           <button class="counter">0</button>
+          <button class="deleteAll"><i class="fa fa-trash"></i></button>
           <button class="new">&#43;</button>
         </div>
         <div class="content">
