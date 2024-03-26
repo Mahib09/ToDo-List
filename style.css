@@ -133,10 +133,11 @@ main {
 .contentContainer {
   display: flex;
   align-items: center;
-  height: 30px;
+  height: 40px;
   background-color: var(--containergrey);
   margin-top: 3px;
   cursor: move;
+  border-radius: 3px;
 }
 .contentContainer .dragging {
   opacity: 0.5;
@@ -145,8 +146,8 @@ main {
 .dragend {
 }
 .contentContainer .containerbtn {
-  width: 32px;
-  height: 26px;
+  width: 36px;
+  height: 36px;
   margin: 0;
   background-color: var(--containergrey);
   border-radius: 0;
@@ -163,15 +164,21 @@ main {
 textarea:hover {
   background-color: var(--containerhover);
   cursor: pointer;
+  .containerbtn {
+    color: var(--darktext);
+    background-color: var(--containerhover);
+    cursor: pointer;
+  }
 }
 textarea,
 textarea:focus {
   background-color: var(--containergrey);
+  font-family: "General Sans", sans-serif;
   border: none;
   outline: none;
   color: var(--maintext);
-  height: 25px;
-  font-size: 0.9rem;
+  height: 35px;
+  font-size: 1rem;
   border-radius: 3px;
   width: 100%;
   resize: none;

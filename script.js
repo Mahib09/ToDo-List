@@ -1,6 +1,9 @@
 //newtask Button +New
 document.addEventListener("click", function (event) {
-  if (event.target.classList.contains("new-taskbutton")) {
+  if (
+    event.target.classList.contains("new-taskbutton") ||
+    event.target.classList.contains("new")
+  ) {
     function addTextField() {
       const newB = event.target;
       const ansestor = newB.closest(".taskComponent");
@@ -30,12 +33,8 @@ document.addEventListener("click", function (event) {
     }
     addTextField();
     drag();
-  }
-});
-
-//Delete Button x
-document.addEventListener("click", function (event) {
-  if (event.target && event.target.classList.contains("deletebtn")) {
+    //delete btn
+  } else if (event.target && event.target.classList.contains("deletebtn")) {
     const container = event.target.closest(".contentContainer");
     const NearestTaskcomponent = container.closest(".taskComponent");
     const counterbtn = NearestTaskcomponent.querySelector(".counter");
@@ -46,12 +45,8 @@ document.addEventListener("click", function (event) {
     var newCount = counterValue - 1;
     counterbtn.innerHTML = newCount;
     container.remove();
-  }
-});
-
-//taskComplete button ->
-document.addEventListener("click", function (event) {
-  if (event.target.classList.contains("arrowbtn")) {
+    //task complete button
+  } else if (event.target.classList.contains("arrowbtn")) {
     function moveitem() {
       const btn = event.target;
       const content = btn.closest(".contentContainer");
@@ -82,41 +77,6 @@ document.addEventListener("click", function (event) {
       contentLocation.insertBefore(content, nearButton);
     }
     moveitem();
-  }
-});
-
-//+button;
-document.addEventListener("click", function (event) {
-  if (event.target.classList.contains("new")) {
-    function addTextField() {
-      const newB = event.target;
-      const ansestor = newB.closest(".taskComponent");
-      if (ansestor.classList.contains("todo")) {
-        content = document.querySelector(".todo .content");
-      } else if (ansestor.classList.contains("progress")) {
-        content = document.querySelector(".progress .content");
-      } else {
-        content = document.querySelector(".done .content");
-      }
-      const nearBtn = content.querySelector(".new-taskbutton");
-      const contentContainer = document.createElement("div");
-      contentContainer.setAttribute("class", "contentContainer");
-      contentContainer.setAttribute("draggable", "true");
-      const newContent = `<textarea name="" id="" cols="30" rows="10" placeholder="Type a Name"></textarea> <button class="containerbtn arrowbtn">-></button>
-            <button class="containerbtn deletebtn">X</button>`;
-      contentContainer.innerHTML = newContent;
-      content.insertBefore(contentContainer, nearBtn);
-      //counter
-      const NearestTaskcomponent = contentContainer.closest(".taskComponent");
-      const counterbtn = NearestTaskcomponent.querySelector(".counter");
-      const allContent = NearestTaskcomponent.querySelectorAll(
-        ".contentContainer textarea"
-      );
-      var counterValue = Number(allContent.length);
-      counterbtn.innerHTML = counterValue;
-    }
-    addTextField();
-    drag();
   }
 });
 
