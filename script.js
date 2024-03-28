@@ -124,7 +124,6 @@ function drag() {
   draggables.forEach((draggable) => {
     draggable.addEventListener("dragstart", () => {
       draggable.classList.add("dragging");
-      console.log("you lo", NumberofItems);
     });
     draggable.addEventListener("dragend", () => {
       draggable.classList.remove("dragging");
@@ -145,12 +144,10 @@ function drag() {
         nearbtn.classList.add("bordertop");
         container.insertBefore(draggable, nearbtn);
         nearbtn.classList.remove("bordertop");
-        afterCounter.innerHTML = numberOfDragablesAfterContainer;
       } else {
         afterElement.classList.add("bordertop");
         container.insertBefore(draggable, afterElement);
         afterElement.classList.remove("bordertop");
-        afterCounter.innerHTML = numberOfDragablesAfterContainer;
       }
     });
   });
@@ -173,3 +170,23 @@ function getDragAfterElement(container, y) {
     { offset: Number.NEGATIVE_INFINITY }
   ).element;
 }
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("sort")) {
+    const sort = event.target;
+    sort.classList.toggle("clicked");
+    const menu = document.querySelector(".sortmenu");
+    menu.classList.toggle("show");
+
+    const sortByName = menu.querySelector(".sortname");
+    const sortByDate = menu.querySelector(".sortdate");
+    const contents = document.querySelectorAll(".contentContainer");
+    const allContent = [];
+    console.log(contents);
+    contents.forEach((content) => {});
+    menu.addEventListener("click", (e) => {
+      if (e.target === sortByName) {
+      } else if (e.target === sortByDate) {
+      }
+    });
+  }
+});

@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <title>To do List | Mahib</title>
   </head>
   <body>
@@ -21,7 +21,6 @@
           <button class="confirmationCancel">Cancel</button>
         </div>
       </div>
-
     <header>
       <h1 class="heading1">Task List</h1>
       <p class="instructions">
@@ -35,13 +34,17 @@
       </p>
       
       <div class="header-end">
-        <a href="" class="boardView">Board</a>
-        <a href="" class="tableView">Table</a>
         <button class="sort">Sort</button>
         <button class="filter">Filter</button>
-        <button class="new">New</button>
+        <button class="headNew">New</button>
       </div>
       <hr>
+      <div class="sortmenu">
+        <div class="sortbtn" ><input type="radio" name="sort" id="byname" checked>
+          <label for="byname" class="sortname">Name</label></div>
+        <div class="sortbtn"><input type="radio" name="sort" id="bydate">
+          <label for="bydate" class="sortdate">Date Created</label></div>
+      </div>
     </header>
     <main>
       <div class="taskComponent todo">
