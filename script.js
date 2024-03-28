@@ -124,6 +124,7 @@ function drag() {
   draggables.forEach((draggable) => {
     draggable.addEventListener("dragstart", () => {
       draggable.classList.add("dragging");
+      console.log("you lo", NumberofItems);
     });
     draggable.addEventListener("dragend", () => {
       draggable.classList.remove("dragging");
@@ -132,13 +133,24 @@ function drag() {
   dragContainers.forEach((container) => {
     container.addEventListener("dragover", (e) => {
       e.preventDefault();
+      const afterCounter = container
+        .closest(".taskComponent")
+        .querySelector(".counter");
+      var numberOfDragablesAfterContainer =
+        container.querySelectorAll(".contentContainer").length;
       const afterElement = getDragAfterElement(container, e.clientY);
       const draggable = document.querySelector(".dragging");
       const nearbtn = container.querySelector(".new-taskbutton");
       if (afterElement == null) {
+        nearbtn.classList.add("bordertop");
         container.insertBefore(draggable, nearbtn);
+        nearbtn.classList.remove("bordertop");
+        afterCounter.innerHTML = numberOfDragablesAfterContainer;
       } else {
+        afterElement.classList.add("bordertop");
         container.insertBefore(draggable, afterElement);
+        afterElement.classList.remove("bordertop");
+        afterCounter.innerHTML = numberOfDragablesAfterContainer;
       }
     });
   });

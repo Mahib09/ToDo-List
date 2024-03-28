@@ -30,7 +30,7 @@ body {
   display: flex;
   gap: 5px;
 }
-.header-end button:last-child {
+.sort {
   margin-left: auto;
 }
 /*delete all confirmation block*/
@@ -92,6 +92,11 @@ body {
 .confirmationCancel:hover {
   background-color: var(--containerhover);
   border-color: var(--maintext);
+}
+hr {
+  background-color: var(--darktext);
+  height: 1px;
+  border: none;
 }
 /*main*/
 main {
@@ -209,7 +214,11 @@ main {
   opacity: 0.5;
 }
 
-.dragend {
+.dragging {
+  opacity: 0.5;
+}
+.bordertop {
+  border: 5px solid var(--blue);
 }
 .contentContainer .containerbtn {
   width: 36px;
