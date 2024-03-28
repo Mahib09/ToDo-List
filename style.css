@@ -29,6 +29,7 @@ body {
 .header-end {
   display: flex;
   gap: 10px;
+  align-items: flex-end;
 }
 .sort {
   margin-left: auto;
@@ -38,12 +39,30 @@ body {
   border: none;
   margin-bottom: -5px;
   color: var(--maintext);
+  height: 30px;
   width: 60px;
   border-radius: 5px;
 }
 .headNew:hover {
   background-color: #0077d4;
   cursor: pointer;
+}
+.header-end li {
+  list-style-type: none;
+  font-size: 0.8rem;
+  padding: 0;
+  margin: 0;
+  margin-bottom: -15px;
+  height: 30px;
+  align-items: baseline;
+}
+.plusNewList {
+  background-color: var(--basegrey);
+  border: none;
+  color: var(--darktext);
+}
+.plusNewList:hover {
+  color: #0077d4;
 }
 .sort,
 .filter {

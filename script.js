@@ -82,7 +82,7 @@ document.addEventListener("click", function (event) {
 //deleteall
 let content;
 document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("fa")) {
+  if (e.target.classList.contains("fa-trash")) {
     const model = document.querySelector(".model");
     model.classList.remove("hide");
     model.classList.add("show");
@@ -182,7 +182,9 @@ document.addEventListener("click", function (event) {
     const contents = document.querySelectorAll(".contentContainer");
     const allContent = [];
     console.log(contents);
-    contents.forEach((content) => {});
+    contents.forEach((content) => {
+      content.innerHTML;
+    });
     menu.addEventListener("click", (e) => {
       if (e.target === sortByName) {
       } else if (e.target === sortByDate) {
