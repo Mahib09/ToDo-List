@@ -1,3 +1,7 @@
+import items from "./items"; // items object class
+const lists = ["Your Task List"]; //to store the lists made
+function newItem() {} //function to fill up new items
+function deleteItems() {}
 //newtask Button +New
 document.addEventListener("click", function (event) {
   if (
