@@ -15,7 +15,9 @@ const taskcontainerDeleteAllTasks = document.querySelectorAll(
 const taskcontainerNewTasks = document.querySelectorAll(
   "[data-task-container-header-newtask]"
 );
-const taskContainer = document.querySelectorAll("data-task-container-content");
+const taskContainers = document.querySelectorAll(
+  "[data-task-container-content]"
+);
 const taskTemplate = document.getElementById("task-template");
 const LOCAL_STORAGE_LIST_KEY = "task.lists";
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
@@ -54,9 +56,14 @@ function createList(name) {
     id: Date.now().toString(),
     name: name,
     task: {
-      todo: [],
+      todo: [
+        {
+          id: 2,
+          name: "do this",
+        },
+      ],
       inprogress: [],
-      done: [],
+      done: [{ id: 2, name: "do this" }],
     },
   };
 }
@@ -77,11 +84,10 @@ function render() {
       maintaskcontainer.style.display = "none";
     } else {
       maintaskcontainer.style.display = "";
-      // countTask(selectedList);
-      // clearElement(maintaskcontainer);
-      // renderTasks(selectedList, maintaskcontainer);
     }
   });
+  renderTasks(selectedList);
+  countTask(selectedList);
 }
 function renderlist() {
   lists.forEach((list) => {
@@ -95,20 +101,67 @@ function renderlist() {
     listContainer.appendChild(listContent);
   });
 }
-function renderTasks(selectedList, maintaskcontainer) {}
+function renderTasks(selectedList) {
+  if (!selectedList) {
+    return;
+  }
+  const todolist = selectedList.task.todo;
+  const progresslist = selectedList.task.inprogress;
+  const donelist = selectedList.task.done;
+  todolist.forEach((task) => {
+    maintaskcontainers.forEach((container) => {
+      if (container.classList.contains("todo")) {
+        taskContainer = container.querySelector(
+          "[data-task-container-content]"
+        );
+        return tasks(taskContainer, task);
+      }
+    });
+  });
+  progresslist.forEach((task) => {
+    maintaskcontainers.forEach((container) => {
+      if (container.classList.contains("progress")) {
+        let taskContainer = container.querySelector(
+          "[data-task-container-content]"
+        );
+        return tasks(taskContainer, task);
+      }
+    });
+  });
+  donelist.forEach((task) => {
+    maintaskcontainers.forEach((container) => {
+      if (container.classList.contains("done")) {
+        taskContainer = container.querySelector(
+          "[data-task-container-content]"
+        );
+        return tasks(taskContainer, task);
+      }
+    });
+  });
+}
+function tasks(container, task) {
+  const taskElement = document.importNode(taskTemplate.content, true);
+  const inputField = taskElement.querySelector("textarea");
+  inputField.id = task.id;
+  inputField.append(task.name);
+  container.appendChild(taskElement);
+}
 
-// function countTask(selectedList) {
-//   const alltasktodocount = selectedList.task.todo.length;
-//   const alltaskinprogresscount = selectedList.task.inprogress.length;
-//   const alltaskdonecount = selectedList.task.done.length;
-//   taskcontainerCounters.forEach((counter) => {
-//     const NearestTaskcomponent = counter.closest("[data-task-container]");
-//     if (NearestTaskcomponent.classList.contains("todo")) {
-//       counter.innerHTML = alltasktodocount;
-//     } else if (NearestTaskcomponent.classList.contains("progress")) {
-//       counter.innerHTML = alltaskinprogresscount;
-//     } else {
-//       counter.innerHTML = alltaskdonecount;
-//     }
-//   });
-// }
+function countTask(selectedList) {
+  if (!selectedList) {
+    return;
+  }
+  const alltasktodocount = selectedList.task.todo.length;
+  const alltaskinprogresscount = selectedList.task.inprogress.length;
+  const alltaskdonecount = selectedList.task.done.length;
+  taskcontainerCounters.forEach((counter) => {
+    const NearestTaskcomponent = counter.closest("[data-task-container]");
+    if (NearestTaskcomponent.classList.contains("todo")) {
+      counter.innerHTML = alltasktodocount;
+    } else if (NearestTaskcomponent.classList.contains("progress")) {
+      counter.innerHTML = alltaskinprogresscount;
+    } else {
+      counter.innerHTML = alltaskdonecount;
+    }
+  });
+}
