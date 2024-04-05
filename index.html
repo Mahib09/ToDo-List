@@ -10,7 +10,6 @@
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="script.js" defer></script>
-    <script type="module" src="items.js"></script>
     <title>To do List | Mahib</title>
   </head>
   <body>
@@ -35,8 +34,15 @@
       </p>
       
       <div class="header-end">
-        <li>Your Task List</li>
-      <i class="fa fa-plus plusNewList"></i>
+        <ul class="lists" data-lists>
+          <!-- <li class="list selectedList">Your Task List</li>
+          <li class="list">Your Task List</li> -->
+        </ul>
+        <form action="" data-new-list-form>
+          <input type="text" data-new-list-input>
+          <button type="submit"><i class="fa fa-plus plusNewList"></i></button>
+        </form>
+      
         <button class="sort">Sort</button>
         <button class="filter">Filter</button>
         <button class="headNew">New</button>

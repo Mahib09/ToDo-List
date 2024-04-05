@@ -47,14 +47,30 @@ body {
   background-color: #0077d4;
   cursor: pointer;
 }
-.header-end li {
+.lists {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+.list {
   list-style-type: none;
   font-size: 0.8rem;
   padding: 0;
   margin: 0;
-  margin-bottom: -15px;
+  margin-bottom: -8px;
   height: 30px;
-  align-items: baseline;
+  color: var(--darktext);
+  text-align: end;
+  border-radius: 3px;
+}
+.list:hover {
+  background-color: var(--containerhover);
+}
+.selectedList {
+  color: var(--maintext);
+  font-weight: bold;
+  border-bottom: solid 3px var(--maintext);
 }
 .plusNewList {
   background-color: var(--basegrey);
