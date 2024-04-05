@@ -60,48 +60,55 @@
       </div>
     </header>
     <main>
-      <div class="taskComponent todo">
-        <div class="headComponent">
+      <div class="taskComponent todo" data-task-container data-list-id="1">
+        <div class="headComponent" data-task-container-header>
           <div class="todoHeader head">
             <p class="headerText"><span class="todo-btn">&#8226</span> To do</p>
           </div>
-          <button class="counter">0</button>
-          <button class="deleteAll"><i class="fa fa-trash"></i></button>
-          <button class="new">&#43;</button>
+          <button class="counter" data-task-container-header-count>0</button>
+          <button class="deleteAll" data-task-container-header-deleteall><i class="fa fa-trash"></i></button>
+          <button class="new" data-task-container-header-newtask>&#43;</button>
         </div>
         
-        <div class="content">
-          <button class="new-taskbutton">+ New</button><br>
+        <div class="content"data-task-container-content>
+          <button class="new-taskbutton" data-task-container-header-newtask>+ New</button><br>
         </div>
       </div>
-      <div class="taskComponent progress">
-        <div class="headComponent">
+      <div class="taskComponent progress" data-task-container data-list-id="2">
+        <div class="headComponent" data-task-container-header>
           <div class="progressHeader head">
             <p class="headerText"><span class="progress-btn">&#8226 </span> In Progress</p>
           </div>
-          <button class="counter">0</button>
-          <button class="deleteAll"><i class="fa fa-trash"></i></button>
-          <button class="new">&#43;</button>
+          <button class="counter" data-task-container-header-count>0</button>
+          <button class="deleteAll" data-task-container-header-deleteall><i class="fa fa-trash"></i></button>
+          <button class="new"data-task-container-header-newtask>&#43;</button>
         </div>
-        <div class="content">
-          <button class="new-taskbutton">+ New</button><br>
+        <div class="content" data-task-container-content>
+          <button class="new-taskbutton" data-task-container-header-newtask>+ New</button><br>
         </div>
       </div>
-      <div class="taskComponent done">
-        <div class="headComponent">
+      <div class="taskComponent done" data-task-container data-list-id="3">
+        <div class="headComponent" data-task-container-header>
           <div class="doneHeader head">
             <p class="headerText"><span class="done-btn">&#8226 </span> Done</p>
             </div>
-          <button class="counter">0</button>
-          <button class="deleteAll"><i class="fa fa-trash"></i></button>
-          <button class="new">&#43;</button>
+          <button class="counter" data-task-container-header-count>0</button>
+          <button class="deleteAll" data-task-container-header-deleteall><i class="fa fa-trash"></i></button>
+          <button class="new" data-task-container-header-newtask>&#43;</button>
         </div>
-        <div class="content">
-          <button class="new-taskbutton">+ New</button><br>
+        <div class="content" data-task-container-content>
+          <button class="new-taskbutton" data-task-container-header-newtask>+ New</button><br>
         </div>
       </div>
     </main>
     <footer></footer>
-    
+    <template id="task-template">
+      <div class="contentContainer" draggable="true">
+        <textarea name="" id="" cols="30" rows="10" placeholder="Type a Name"></textarea>
+        <button class="containerbtn arrowbtn">-></button>
+        <button class="containerbtn deletebtn">X</button>
+      </div>
+      
+    </template>
   </body>
 </html>
