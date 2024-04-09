@@ -60,9 +60,9 @@ taskcontainerNewTasks.forEach((newtask) => {
     const selectedList = lists.find((list) => list.id === selectedListId);
     if (NearestTaskcomponent.classList.contains("todo")) {
       selectedList.task.todo.push(newtask);
-    } else if (NearestTaskcomponent.classList.contains("todo")) {
+    } else if (NearestTaskcomponent.classList.contains("progress")) {
       selectedList.task.inprogress.push(newtask);
-    } else if (NearestTaskcomponent.classList.contains("todo")) {
+    } else if (NearestTaskcomponent.classList.contains("done")) {
       selectedList.task.done.push(newtask);
     }
     saveandrender();
@@ -108,8 +108,16 @@ function render() {
       maintaskcontainer.style.display = "";
     }
   });
-  renderTasks(selectedList);
+
   countTask(selectedList);
+  clearTask();
+  renderTasks(selectedList);
+}
+function clearTask() {
+  const taskelements = document.querySelectorAll(".contentContainer");
+  taskelements.forEach((element) => {
+    element.remove();
+  });
 }
 function renderlist() {
   lists.forEach((list) => {
