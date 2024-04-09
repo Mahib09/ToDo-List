@@ -301,6 +301,7 @@ main {
   transition: all 0.1s ease-in-out;
   margin-top: 3px;
 }
+
 .contentContainer {
   display: flex;
   align-items: center;

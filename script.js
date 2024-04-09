@@ -18,6 +18,7 @@ const taskcontainerNewTasks = document.querySelectorAll(
 const taskContainers = document.querySelectorAll(
   "[data-task-container-content]"
 );
+const newtaskform = document.querySelectorAll(".newtaskform");
 const taskTemplate = document.getElementById("task-template");
 const LOCAL_STORAGE_LIST_KEY = "task.lists";
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
@@ -46,6 +47,27 @@ newlistForm.addEventListener("submit", (e) => {
   lists.push(list);
   saveandrender();
 });
+taskcontainerNewTasks.forEach((newtask) => {
+  newtask.addEventListener("submit", (event) => {
+    const field = event.target.querySelector("input");
+    const taskname = field.value;
+    if (field.value === null || field.value === "") {
+      return;
+    }
+    const newtask = createTask(taskname);
+    field.value = "";
+    const NearestTaskcomponent = event.target.closest(".taskComponent");
+    const selectedList = lists.find((list) => list.id === selectedListId);
+    if (NearestTaskcomponent.classList.contains("todo")) {
+      selectedList.task.todo.push(newtask);
+    } else if (NearestTaskcomponent.classList.contains("todo")) {
+      selectedList.task.inprogress.push(newtask);
+    } else if (NearestTaskcomponent.classList.contains("todo")) {
+      selectedList.task.done.push(newtask);
+    }
+    saveandrender();
+  });
+});
 function clearElement(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
@@ -56,23 +78,23 @@ function createList(name) {
     id: Date.now().toString(),
     name: name,
     task: {
-      todo: [
-        {
-          id: 2,
-          name: "do this",
-        },
-      ],
+      todo: [],
       inprogress: [],
-      done: [{ id: 2, name: "do this" }],
+      done: [],
     },
   };
 }
+function createTask(name) {
+  return { id: Date.now().toString(), name: name };
+}
+
 function saveandrender() {
   save();
   render();
 }
 function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
+  localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
 }
 
 function render() {
@@ -111,7 +133,7 @@ function renderTasks(selectedList) {
   todolist.forEach((task) => {
     maintaskcontainers.forEach((container) => {
       if (container.classList.contains("todo")) {
-        taskContainer = container.querySelector(
+        let taskContainer = container.querySelector(
           "[data-task-container-content]"
         );
         return tasks(taskContainer, task);
@@ -131,7 +153,7 @@ function renderTasks(selectedList) {
   donelist.forEach((task) => {
     maintaskcontainers.forEach((container) => {
       if (container.classList.contains("done")) {
-        taskContainer = container.querySelector(
+        let taskContainer = container.querySelector(
           "[data-task-container-content]"
         );
         return tasks(taskContainer, task);
@@ -165,3 +187,4 @@ function countTask(selectedList) {
     }
   });
 }
+render();
