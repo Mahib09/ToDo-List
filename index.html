@@ -43,10 +43,8 @@
           <button type="submit"><i class="fa fa-plus plusNewList"></i></button>
         </form>
       
-        <button class="sort">Sort</button>
-        <button class="filter">Filter</button>
+        <button class="sort" data-sort-list-button>Sort</button>
         <button data-delete-list-button>Delete List</button>
-        <button class="headNew">New</button>
       </div>
       <hr>
       <div>
@@ -67,7 +65,7 @@
           </div>
           <button class="counter" data-task-container-header-count>0</button>
           <button class="deleteAll" data-task-container-header-deleteall><i class="fa fa-trash"></i></button>
-          <button class="new" data-task-container-header-newtask>&#43;</button>
+          
         </div>
         
         <div class="content"data-task-container-content>
@@ -81,7 +79,7 @@
           </div>
           <button class="counter" data-task-container-header-count>0</button>
           <button class="deleteAll" data-task-container-header-deleteall><i class="fa fa-trash"></i></button>
-          <button class="new"data-task-container-header-newtask>&#43;</button>
+          
         </div>
         <div class="content" data-task-container-content>
           <form action="" data-task-container-header-newtask><input class="new-taskbutton" placeholder="+ New" /></form><br>
@@ -94,7 +92,7 @@
             </div>
           <button class="counter" data-task-container-header-count>0</button>
           <button class="deleteAll" data-task-container-header-deleteall><i class="fa fa-trash"></i></button>
-          <button class="new" data-task-container-header-newtask>&#43;</button>
+          
         </div>
         <div class="content" data-task-container-content>
           <form action="" data-task-container-header-newtask><input class="new-taskbutton" placeholder="+ New" /></form><br>
@@ -104,7 +102,7 @@
     <footer></footer>
     <template id="task-template">
       <div class="contentContainer" draggable="true">
-        <textarea name="" id="" cols="30" rows="10" placeholder="Type a Name"></textarea>
+        <textarea name="" id="" cols="30" rows="10" readonly></textarea>
         <button class="containerbtn arrowbtn">-></button>
         <button class="containerbtn deletebtn">X</button>
       </div>

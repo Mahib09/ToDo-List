@@ -2,6 +2,7 @@ const listContainer = document.querySelector("[data-lists]");
 const newlistForm = document.querySelector("[data-new-list-form]");
 const newlistInput = document.querySelector("[data-new-list-input]");
 const deleteListButton = document.querySelector("[data-delete-list-button]");
+const sortTaskButton = document.querySelector("[data-sort-list-button]");
 const maintaskcontainers = document.querySelectorAll("[data-task-container]");
 const taskcontainerHeads = document.querySelectorAll(
   "[data-task-container-header]"
@@ -36,6 +37,7 @@ deleteListButton.addEventListener("click", (e) => {
   selectedListId = null;
   saveandrender();
 });
+
 newlistForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const listname = newlistInput.value;
@@ -47,6 +49,48 @@ newlistForm.addEventListener("submit", (e) => {
   lists.push(list);
   saveandrender();
 });
+//delete all Function
+// document.addEventListener("click", (e) => {
+//   let container;
+//   if (e.target.classList.contains("fa-trash")) {
+//     const selectedList = lists.find((list) => list.id === selectedListId);
+//     const model = document.querySelector(".model");
+//     model.classList.remove("hide");
+//     model.classList.add("show");
+//     container = e.target.closest(".taskComponent");
+//     const confirmbtn = document.querySelector(".confirmationDelete");
+//     const cancelbtn = document.querySelector(".confirmationCancel");
+
+//     document.addEventListener("click", (e) => {
+//       if (
+//         !confirmbtn.contains(e.target) &&
+//         cancelbtn.contains(e.target) &&
+//         model.contains(e.target)
+//       ) {
+//         model.classList.remove("show");
+//         model.classList.add("hide");
+//       } else if (confirmbtn.contains(e.target)) {
+//         if (container.classList.contains("todo")) {
+//           // selectedList.task.todo = [];
+//           console.log("todo deleted");
+//           container = null;
+//         } else if (container.classList.contains("progress")) {
+//           // selectedList.task.inprogress = [];
+//           console.log("progress deleted");
+//           container = null;
+//         } else if (container.classList.contains("done")) {
+//           // selectedList.task.done = [];
+//           console.log("done deleted");
+//           container = null;
+//         }
+//         // saveandrender();
+//         model.classList.remove("show");
+//         model.classList.add("hide");
+//       }
+//     });
+//   }
+// });
+
 taskcontainerNewTasks.forEach((newtask) => {
   newtask.addEventListener("submit", (event) => {
     const field = event.target.querySelector("input");
@@ -66,6 +110,7 @@ taskcontainerNewTasks.forEach((newtask) => {
       selectedList.task.done.push(newtask);
     }
     saveandrender();
+    return;
   });
 });
 function clearElement(element) {
@@ -176,6 +221,29 @@ function tasks(container, task) {
   inputField.append(task.name);
   container.appendChild(taskElement);
 }
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("deletebtn")) {
+    const selectedList = lists.find((list) => list.id === selectedListId);
+    const NearestTaskcomponent = e.target.closest(".taskComponent");
+    const ContentCon = e.target.closest(".contentContainer");
+    const Content = ContentCon.querySelector("textarea").value;
+    let deleteitem;
+    if (NearestTaskcomponent.classList.contains("todo")) {
+      selectedList.task.todo = selectedList.task.todo.filter(
+        (item) => item.name !== Content
+      );
+    } else if (NearestTaskcomponent.classList.contains("progress")) {
+      selectedList.task.inprogress = selectedList.task.inprogress.filter(
+        (item) => item.name !== Content
+      );
+    } else if (NearestTaskcomponent.classList.contains("done")) {
+      selectedList.task.done = selectedList.task.done.filter(
+        (item) => item.name !== Content
+      );
+    }
+    saveandrender();
+  }
+});
 
 function countTask(selectedList) {
   if (!selectedList) {
@@ -195,4 +263,5 @@ function countTask(selectedList) {
     }
   });
 }
+
 render();

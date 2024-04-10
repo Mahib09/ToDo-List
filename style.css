@@ -72,16 +72,7 @@ body {
   font-weight: bold;
   border-bottom: solid 3px var(--maintext);
 }
-.plusNewList {
-  background-color: var(--basegrey);
-  border: none;
-  color: var(--darktext);
-}
-.plusNewList:hover {
-  color: #0077d4;
-}
-.sort,
-.filter {
+.sort {
   background-color: var(--basegrey);
   border: none;
   color: var(--darktext);
@@ -93,8 +84,7 @@ body {
 .clicked {
   color: var(--blue);
 }
-.sort:hover,
-.filter:hover {
+.sort:hover {
   background-color: var(--containerhover);
 }
 .sortmenu {
@@ -203,7 +193,7 @@ main {
   display: flex;
   height: 80vh;
   justify-self: start;
-  gap: 0px;
+  gap: 50px;
 }
 .taskComponent {
   width: 350px;
@@ -247,7 +237,6 @@ main {
 .headComponent .counter:hover {
   background-color: var(--containerhover);
 }
-.headComponent .new,
 .headComponent .deleteAll {
   background-color: var(--basegrey);
   height: 25px;
@@ -255,20 +244,17 @@ main {
   border: none;
   color: var(--basegrey);
   font-size: 1.2rem;
-  margin-right: 50px;
+  margin-right: 0px;
   cursor: pointer;
 }
 .headComponent .deleteAll {
-  margin: 0 0 0 auto;
+  margin: 0 30px 0 auto;
 }
 .headComponent .new:hover {
   background-color: var(--containerhover);
   cursor: pointer;
 }
 .headComponent:hover {
-  .new {
-    color: var(--darktext);
-  }
   .deleteAll {
     color: var(--darktext);
   }
