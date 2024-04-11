@@ -21,6 +21,9 @@ const taskContainers = document.querySelectorAll(
 );
 const newtaskform = document.querySelectorAll(".newtaskform");
 const taskTemplate = document.getElementById("task-template");
+const model = document.querySelector(".model");
+const confirmbtn = document.querySelector(".confirmationDelete");
+const cancelbtn = document.querySelector(".confirmationCancel");
 const LOCAL_STORAGE_LIST_KEY = "task.lists";
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
@@ -235,33 +238,30 @@ document.addEventListener("click", (e) => {
     saveandrender();
   }
 });
+let closest;
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("fa-trash")) {
-    const model = document.querySelector(".model");
     model.classList.remove("hide");
     model.classList.add("show");
-    const NearestTaskcomponent = e.target.closest(".taskComponent");
-    const confirmbtn = document.querySelector(".confirmationDelete");
-    const cancelbtn = document.querySelector(".confirmationCancel");
-
-    confirmbtn.addEventListener("click", () => {
-      const selectedList = lists.find((list) => list.id === selectedListId);
-      if (NearestTaskcomponent.classList.contains("todo")) {
-        selectedList.task.todo = [];
-      } else if (NearestTaskcomponent.classList.contains("progress")) {
-        selectedList.task.inprogress = [];
-      } else if (NearestTaskcomponent.classList.contains("done")) {
-        selectedList.task.done = [];
-      }
-    });
-
-    cancelbtn.addEventListener("click", (event) => {
-      model.classList.remove("show");
-      model.classList.add("hide");
-    });
-
-    saveandrender();
+    return (closest = e.target.closest(".taskComponent"));
   }
+});
+confirmbtn.addEventListener("click", (e) => {
+  const selectedList = lists.find((list) => list.id === selectedListId);
+  if (closest.classList.contains("todo")) {
+    selectedList.task.todo = [];
+  } else if (closest.classList.contains("progress")) {
+    selectedList.task.inprogress = [];
+  } else if (closest.classList.contains("done")) {
+    selectedList.task.done = [];
+  }
+  model.classList.remove("show");
+  model.classList.add("hide");
+  saveandrender();
+});
+cancelbtn.addEventListener("click", () => {
+  model.classList.remove("show");
+  model.classList.add("hide");
 });
 function countTask(selectedList) {
   if (!selectedList) {
