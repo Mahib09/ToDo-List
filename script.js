@@ -49,47 +49,6 @@ newlistForm.addEventListener("submit", (e) => {
   lists.push(list);
   saveandrender();
 });
-//delete all Function
-// document.addEventListener("click", (e) => {
-//   let container;
-//   if (e.target.classList.contains("fa-trash")) {
-//     const selectedList = lists.find((list) => list.id === selectedListId);
-//     const model = document.querySelector(".model");
-//     model.classList.remove("hide");
-//     model.classList.add("show");
-//     container = e.target.closest(".taskComponent");
-//     const confirmbtn = document.querySelector(".confirmationDelete");
-//     const cancelbtn = document.querySelector(".confirmationCancel");
-
-//     document.addEventListener("click", (e) => {
-//       if (
-//         !confirmbtn.contains(e.target) &&
-//         cancelbtn.contains(e.target) &&
-//         model.contains(e.target)
-//       ) {
-//         model.classList.remove("show");
-//         model.classList.add("hide");
-//       } else if (confirmbtn.contains(e.target)) {
-//         if (container.classList.contains("todo")) {
-//           // selectedList.task.todo = [];
-//           console.log("todo deleted");
-//           container = null;
-//         } else if (container.classList.contains("progress")) {
-//           // selectedList.task.inprogress = [];
-//           console.log("progress deleted");
-//           container = null;
-//         } else if (container.classList.contains("done")) {
-//           // selectedList.task.done = [];
-//           console.log("done deleted");
-//           container = null;
-//         }
-//         // saveandrender();
-//         model.classList.remove("show");
-//         model.classList.add("hide");
-//       }
-//     });
-//   }
-// });
 
 taskcontainerNewTasks.forEach((newtask) => {
   newtask.addEventListener("submit", (event) => {
@@ -227,7 +186,6 @@ document.addEventListener("click", (e) => {
     const NearestTaskcomponent = e.target.closest(".taskComponent");
     const ContentCon = e.target.closest(".contentContainer");
     const Content = ContentCon.querySelector("textarea").value;
-    let deleteitem;
     if (NearestTaskcomponent.classList.contains("todo")) {
       selectedList.task.todo = selectedList.task.todo.filter(
         (item) => item.name !== Content
@@ -244,7 +202,68 @@ document.addEventListener("click", (e) => {
     saveandrender();
   }
 });
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("arrowbtn")) {
+    const selectedList = lists.find((list) => list.id === selectedListId);
+    const NearestTaskcomponent = e.target.closest(".taskComponent");
+    const ContentCon = e.target.closest(".contentContainer");
+    const Content = ContentCon.querySelector("textarea").value;
+    let selectedItem = 0;
+    if (NearestTaskcomponent.classList.contains("todo")) {
+      selectedItem = selectedList.task.todo.findIndex(
+        (item) => item.name === Content
+      );
+      if (selectedItem !== 1) {
+        selectedList.task.inprogress.push(selectedList.task.todo[selectedItem]);
+        selectedList.task.todo.splice(selectedItem, 1);
+      }
+    } else if (NearestTaskcomponent.classList.contains("progress")) {
+      selectedItem = selectedList.task.inprogress.findIndex(
+        (item) => item.name === Content
+      );
+      if (selectedItem !== 1) {
+        selectedList.task.done.push(selectedList.task.todo[selectedItem]);
+        selectedList.task.inprogress.splice(selectedItem, 1);
+      }
+    } else if (NearestTaskcomponent.classList.contains("done")) {
+      selectedItem = selectedList.task.done.findIndex(
+        (item) => item.name === Content
+      );
+      if (selectedItem !== 1) {
+        selectedList.task.done.splice(selectedItem, 1);
+      }
+    }
+    saveandrender();
+  }
+});
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("fa-trash")) {
+    const model = document.querySelector(".model");
+    model.classList.remove("hide");
+    model.classList.add("show");
+    const NearestTaskcomponent = e.target.closest(".taskComponent");
+    const confirmbtn = document.querySelector(".confirmationDelete");
+    const cancelbtn = document.querySelector(".confirmationCancel");
 
+    confirmbtn.addEventListener("click", () => {
+      const selectedList = lists.find((list) => list.id === selectedListId);
+      if (NearestTaskcomponent.classList.contains("todo")) {
+        selectedList.task.todo = [];
+      } else if (NearestTaskcomponent.classList.contains("progress")) {
+        selectedList.task.inprogress = [];
+      } else if (NearestTaskcomponent.classList.contains("done")) {
+        selectedList.task.done = [];
+      }
+    });
+
+    cancelbtn.addEventListener("click", (event) => {
+      model.classList.remove("show");
+      model.classList.add("hide");
+    });
+
+    saveandrender();
+  }
+});
 function countTask(selectedList) {
   if (!selectedList) {
     return;
