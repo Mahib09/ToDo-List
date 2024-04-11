@@ -1,46 +1,50 @@
-const listContainer = document.querySelector("[data-lists]");
-const newlistForm = document.querySelector("[data-new-list-form]");
-const newlistInput = document.querySelector("[data-new-list-input]");
-const deleteListButton = document.querySelector("[data-delete-list-button]");
-const sortTaskButton = document.querySelector("[data-sort-list-button]");
-const maintaskcontainers = document.querySelectorAll("[data-task-container]");
+const listContainer = document.querySelector("[data-lists]"); //main list holder
+const newlistForm = document.querySelector("[data-new-list-form]"); // list input form
+const newlistInput = document.querySelector("[data-new-list-input]"); //list input
+const deleteListButton = document.querySelector("[data-delete-list-button]"); // delete list btn
+const sortTaskButton = document.querySelector("[data-sort-list-button]"); // sort tasks btn
+const maintaskcontainers = document.querySelectorAll("[data-task-container]"); //ALL main body(contains all tasks)
 const taskcontainerHeads = document.querySelectorAll(
   "[data-task-container-header]"
-);
+); //All task Container Headers(Containers title counter and deleteall)
 const taskcontainerCounters = document.querySelectorAll(
   "[data-task-container-header-count]"
-);
+); //ALL Task Counters
 const taskcontainerDeleteAllTasks = document.querySelectorAll(
   "[data-task-container-header-deleteall]"
-);
+); //All Delete All Task Btn
 const taskcontainerNewTasks = document.querySelectorAll(
   "[data-task-container-header-newtask]"
-);
+); //All Add new task btn
 const taskContainers = document.querySelectorAll(
   "[data-task-container-content]"
-);
-const newtaskform = document.querySelectorAll(".newtaskform");
-const taskTemplate = document.getElementById("task-template");
-const model = document.querySelector(".model");
-const confirmbtn = document.querySelector(".confirmationDelete");
-const cancelbtn = document.querySelector(".confirmationCancel");
-const LOCAL_STORAGE_LIST_KEY = "task.lists";
-const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId";
-let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
-let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
+); //All task containers
+const newtaskform = document.querySelectorAll(".newtaskform"); // new task form
+const taskTemplate = document.getElementById("task-template"); // task template (<template>)
+const model = document.querySelector(".model"); //confirm model for delete all task
+const confirmbtn = document.querySelector(".confirmationDelete"); //confirm btn for delete all task
+const cancelbtn = document.querySelector(".confirmationCancel"); //cancel btn for delete all task
+const LOCAL_STORAGE_LIST_KEY = "task.lists"; //stores listin local storage
+const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId"; //stores selected list in local storage
+let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []; // get list from localstorage
+let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY); //get selected list from local storage
 
+//List Select
 listContainer.addEventListener("click", (e) => {
   if (e.target.tagName.toLowerCase() === "li") {
     selectedListId = e.target.dataset.listId;
     saveandrender();
   }
 });
+
+//Delete List
 deleteListButton.addEventListener("click", (e) => {
   lists = lists.filter((list) => list.id !== selectedListId);
   selectedListId = null;
   saveandrender();
 });
 
+//Create New List
 newlistForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const listname = newlistInput.value;
@@ -53,6 +57,7 @@ newlistForm.addEventListener("submit", (e) => {
   saveandrender();
 });
 
+//Create New Tasks
 taskcontainerNewTasks.forEach((newtask) => {
   newtask.addEventListener("submit", (event) => {
     const field = event.target.querySelector("input");
@@ -75,6 +80,8 @@ taskcontainerNewTasks.forEach((newtask) => {
     return;
   });
 });
+
+//Clear Element
 function clearElement(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
@@ -91,19 +98,25 @@ function createList(name) {
     },
   };
 }
+
+//Task Object Model
 function createTask(name) {
   return { id: Date.now().toString(), name: name };
 }
 
+//Save and Render Combined
 function saveandrender() {
   save();
   render();
 }
+
+//Save the Data to Local Storage
 function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
 }
 
+//Render the Data From Local Storage
 function render() {
   clearElement(listContainer);
   renderlist();
@@ -115,17 +128,20 @@ function render() {
       maintaskcontainer.style.display = "";
     }
   });
-
   countTask(selectedList);
   clearTask();
   renderTasks(selectedList);
 }
+
+//Clear Task
 function clearTask() {
   const taskelements = document.querySelectorAll(".contentContainer");
   taskelements.forEach((element) => {
     element.remove();
   });
 }
+
+//Render Lists data From LocalStorage
 function renderlist() {
   lists.forEach((list) => {
     const listContent = document.createElement("li");
@@ -138,6 +154,8 @@ function renderlist() {
     listContainer.appendChild(listContent);
   });
 }
+
+//Render Task Data From Local Storage
 function renderTasks(selectedList) {
   if (!selectedList) {
     return;
@@ -176,6 +194,8 @@ function renderTasks(selectedList) {
     });
   });
 }
+
+//Task Template Call
 function tasks(container, task) {
   const taskElement = document.importNode(taskTemplate.content, true);
   const inputField = taskElement.querySelector("textarea");
@@ -183,6 +203,8 @@ function tasks(container, task) {
   inputField.append(task.name);
   container.appendChild(taskElement);
 }
+
+// Delete Single Task
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("deletebtn")) {
     const selectedList = lists.find((list) => list.id === selectedListId);
@@ -205,6 +227,8 @@ document.addEventListener("click", (e) => {
     saveandrender();
   }
 });
+
+// Task Done
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("arrowbtn")) {
     const selectedList = lists.find((list) => list.id === selectedListId);
@@ -238,7 +262,9 @@ document.addEventListener("click", (e) => {
     saveandrender();
   }
 });
-let closest;
+
+//Delete All Tasks
+let closest; //define closest to find the closest tack component and see which container to perform the operation on
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("fa-trash")) {
     model.classList.remove("hide");
@@ -264,6 +290,7 @@ cancelbtn.addEventListener("click", () => {
   model.classList.add("hide");
 });
 
+// Count number of Tasks and Display
 function countTask(selectedList) {
   if (!selectedList) {
     return;
@@ -283,4 +310,5 @@ function countTask(selectedList) {
   });
 }
 
+//Call the Render Function
 render();
