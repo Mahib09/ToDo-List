@@ -289,6 +289,20 @@ cancelbtn.addEventListener("click", () => {
   model.classList.remove("show");
   model.classList.add("hide");
 });
+//Sort Alphabetically
+let asc = true; // declare to check if the sorting is ascending or desending
+sortTaskButton.addEventListener("click", () => {
+  const selectedList = lists.find((list) => list.id === selectedListId);
+  if (asc) {
+    selectedList.task.todo.sort((a, b) => a.name.localeCompare(b.name));
+    asc = false;
+  } else {
+    selectedList.task.todo.sort((a, b) => b.name.localeCompare(a.name));
+    asc = true;
+  }
+
+  saveandrender();
+});
 
 // Count number of Tasks and Display
 function countTask(selectedList) {
