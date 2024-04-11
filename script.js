@@ -263,6 +263,7 @@ cancelbtn.addEventListener("click", () => {
   model.classList.remove("show");
   model.classList.add("hide");
 });
+
 function countTask(selectedList) {
   if (!selectedList) {
     return;
