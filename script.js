@@ -222,15 +222,14 @@ document.addEventListener("click", (e) => {
         (item) => item.name === Content
       );
       if (selectedItem !== 1) {
-        selectedList.task.done.push(selectedList.task.todo[selectedItem]);
+        selectedList.task.done.push(selectedList.task.inprogress[selectedItem]);
         selectedList.task.inprogress.splice(selectedItem, 1);
       }
     } else if (NearestTaskcomponent.classList.contains("done")) {
-      selectedItem = selectedList.task.done.findIndex(
-        (item) => item.name === Content
-      );
       if (selectedItem !== 1) {
-        selectedList.task.done.splice(selectedItem, 1);
+        selectedList.task.done = selectedList.task.done.filter(
+          (item) => item.name !== Content
+        );
       }
     }
     saveandrender();
