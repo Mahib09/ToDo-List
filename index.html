@@ -16,7 +16,7 @@
     
       <div class="model hide">
         <div class="deleteallConfirmation">
-          <p class="confirmationText">Are you sure? All pages inside this group will be deleted.</p>
+          <p class="confirmationText">Are you sure? All tasks inside this group will be deleted.</p>
           <button class="confirmationDelete">Delete</button>
           <button class="confirmationCancel">Cancel</button>
         </div>
@@ -27,12 +27,11 @@
         Use this Task Manager to track your personal tasks.
       </p>
       <p class="instructions">
-        Click <span>+ New</span> to create a new task directly on this board.
+        Type the title and click <span>+</span> to create a new task list |  Click <span>+ New</span> to create a new task directly on this board.
       </p>
       <p class="instructions">
-        For more help checkout <a href="readme.html">readme.</a>
+        Click <span>⇒</span> button on the your task to move it to next conatiner | Click <span>X</span> button on the your task to delete the task.
       </p>
-      
       
       <div class="header-end">
         <ul class="lists" data-lists>
@@ -54,7 +53,7 @@
         <button class="bydate">Date Created <span class="ascOrdec">Asc</span></button>
       </div>
     </header>
-    <main>
+    <main class="main">
       <div class="taskComponent todo" data-task-container data-list-id="1">
         <div class="headComponent" data-task-container-header>
           <div class="todoHeader head">
@@ -100,7 +99,7 @@
     <template id="task-template">
       <div class="contentContainer" draggable="true">
         <textarea name="" id="" cols="30" rows="10" readonly></textarea>
-        <button class="containerbtn arrowbtn">-></button>
+        <button class="containerbtn arrowbtn">⇒</button>
         <button class="containerbtn deletebtn">X</button>
       </div>
       

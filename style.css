@@ -19,6 +19,12 @@ body {
   padding: 50px;
   margin-left: auto;
 }
+a {
+  color: var(--blue);
+}
+a:hover {
+  color: #2971bd;
+}
 /*Header*/
 .instructions span {
   background-color: var(--containergrey);
@@ -218,6 +224,7 @@ body {
   border-radius: 4px;
   color: var(--red);
   font-size: 1rem;
+  cursor: pointer;
 }
 .confirmationDelete:hover {
   background-color: #352626;
@@ -232,6 +239,7 @@ body {
   border-radius: 4px;
   color: var(--maintext);
   font-size: 1rem;
+  cursor: pointer;
 }
 .confirmationCancel:hover {
   background-color: var(--containerhover);
@@ -243,7 +251,7 @@ hr {
   border: none;
 }
 /*main*/
-main {
+.main {
   display: flex;
   height: 80vh;
   justify-self: start;
@@ -326,7 +334,6 @@ main {
   color: var(--green);
 }
 .content {
-  margin-top: 20px;
   max-width: 300px;
   display: flex;
   flex-direction: column;
@@ -348,14 +355,14 @@ main {
   margin-bottom: -2px;
 }
 .content form input {
-  background-color: var(--containergrey);
+  background-color: var(--basegrey);
   border: none;
-  color: var(--maintext);
+  color: var(--darktext);
   font-size: 0.9rem;
   height: 35px;
   width: 264px;
   padding-left: 5px;
-  margin: 0;
+  margin-top: 20px;
 }
 .content form input:focus {
   outline: none;
@@ -389,21 +396,28 @@ main {
   text-align: center;
   color: var(--containergrey);
   margin-left: auto;
+  cursor: pointer;
+  transition: 0.2s;
 }
-.contentContainer .containerbtn:hover {
+.contentContainer:hover {
   color: var(--darktext);
   background-color: var(--containerhover);
   cursor: pointer;
+  .containerbtn {
+    background-color: var(--containerhover);
+    color: var(--maintext);
+  }
+  textarea {
+    background-color: var(--containerhover);
+  }
 }
-.content button:hover,
+.deletebtn:hover,
+.arrowbtn:hover {
+  background-color: var(--containergrey) !important;
+}
 textarea:hover {
   background-color: var(--containerhover);
   cursor: pointer;
-  .containerbtn {
-    color: var(--darktext);
-    background-color: var(--containerhover);
-    cursor: pointer;
-  }
 }
 textarea,
 textarea:focus {
@@ -421,6 +435,30 @@ textarea:focus {
   data-gramm_editor: "false";
   data-enable-grammarly: "false";
   padding-left: 5px;
+}
+
+.readmeContent {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+  margin-top: 30px;
+  width: 100%;
+}
+.readmeSubHeading {
+  padding-left: 15px;
+}
+.Accordion {
+  background-color: var(--containergrey);
+  width: 60%;
+  height: 1000px;
+  margin-left: auto;
+}
+.ApplicationDocumentation {
+  background-color: var(--containergrey);
+  width: 40%;
+  height: 300px;
+  position: fixed;
 }
 @media only screen and (max-width: 1000px) {
   main {
