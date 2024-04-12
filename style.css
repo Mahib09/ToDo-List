@@ -390,9 +390,8 @@ hr {
 .contentContainer .containerbtn {
   width: 36px;
   height: 30px;
-  margin: 0;
   background-color: var(--containergrey);
-  border-radius: 0;
+  border-radius: 2px;
   text-align: center;
   color: var(--containergrey);
   margin-left: auto;
@@ -410,6 +409,9 @@ hr {
   textarea {
     background-color: var(--containerhover);
   }
+}
+.deletebtn {
+  margin-right: 3px;
 }
 .deletebtn:hover,
 .arrowbtn:hover {
