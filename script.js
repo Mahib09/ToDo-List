@@ -25,6 +25,8 @@ const model = document.querySelector(".model"); //confirm model for delete all t
 const confirmbtn = document.querySelector(".confirmationDelete"); //confirm btn for delete all task
 const cancelbtn = document.querySelector(".confirmationCancel"); //cancel btn for delete all task
 const sortModel = document.querySelector(".sortmenu");
+const pluslist = document.querySelector(".newlistbtn");
+const inputlist = document.querySelector(".newListInput");
 const LOCAL_STORAGE_LIST_KEY = "task.lists"; //stores listin local storage
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId"; //stores selected list in local storage
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []; // get list from localstorage
@@ -360,6 +362,10 @@ function countTask(selectedList) {
     }
   });
 }
-
+let newlist = false;
+pluslist.addEventListener("click", () => {
+  pluslist.classList.toggle("open");
+  inputlist.classList.toggle("open");
+});
 //Call the Render Function
 render();

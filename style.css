@@ -29,7 +29,7 @@ body {
 .header-end {
   display: flex;
   gap: 10px;
-  align-items: flex-end;
+  align-items: center;
 }
 .sort {
   margin-left: auto;
@@ -49,14 +49,14 @@ body {
 }
 .lists {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   margin: 0;
   padding: 0;
 }
 .list {
   list-style-type: none;
-  font-size: 0.8rem;
-  padding: 0;
+  font-size: 0.9rem;
+  padding: 5px;
   margin: 0;
   margin-bottom: -8px;
   height: 30px;
@@ -71,6 +71,43 @@ body {
   color: var(--maintext);
   font-weight: bold;
   border-bottom: solid 3px var(--maintext);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.newlistform {
+  align-items: center;
+  gap: 10px;
+}
+.newListInput {
+  background-color: var(--containergrey);
+  border: none;
+  height: 25px;
+  padding-left: 10px;
+  color: var(--maintext);
+  font-size: 0.9rem;
+  margin-left: 20px;
+}
+.newListInput::placeholder {
+  color: var(--darktext);
+  padding-left: 5px;
+}
+.newListInput:focus {
+  outline: none;
+}
+.newlistbtn {
+  background-color: var(--basegrey);
+  border: none;
+  color: var(--darktext);
+  height: 30px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.newlistbtn span {
+  font-size: 1.3rem;
+  text-align: center;
+}
+.newlistbtn:hover {
+  color: var(--maintext);
 }
 .sort {
   background-color: var(--basegrey);
@@ -80,7 +117,10 @@ body {
   width: 50px;
   margin-bottom: -5px;
   border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
+
 .clicked {
   color: var(--blue);
 }
@@ -100,6 +140,7 @@ body {
   font-size: 0.8rem;
   margin-top: -28px;
   visibility: hidden;
+  cursor: pointer;
 }
 
 .sortmenu button {
@@ -113,6 +154,7 @@ body {
   background-color: var(--containergrey);
   text-align: left;
   display: flex;
+  cursor: pointer;
 }
 .checked {
   background-color: var(--containerhover) !important;
@@ -120,6 +162,20 @@ body {
 .ascOrdec {
   color: var(--blue);
   margin-left: auto;
+}
+.deleteList {
+  background-color: var(--red);
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: var(--maintext);
+  font-weight: bold;
+  height: 35px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.deleteList:hover {
+  background-color: #993835;
 }
 /*delete all confirmation block*/
 .model {
