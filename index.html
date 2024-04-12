@@ -44,17 +44,15 @@
         </form>
       
         <button class="sort" data-sort-list-button>Sort</button>
-        <button data-delete-list-button>Delete List</button>
+        <button data-delete-list-button class="deleteList">Delete List</button>
       </div>
       <hr>
       <div>
         <input type="text" placeholder="Enter Header" class="headerInput hide">
       </div>
-      <div class="sortmenu">
-        <div class="sortbtn" ><input type="radio" name="sort" id="byname" checked>
-          <label for="byname" class="sortname">Name</label></div>
-        <div class="sortbtn"><input type="radio" name="sort" id="bydate">
-          <label for="bydate" class="sortdate">Date Created</label></div>
+      <div class="sortmenu"> 
+        <button class="byname checked">Name <span class="ascOrdec">Asc</span></button>
+        <button class="bydate">Date Created <span class="ascOrdec">Asc</span></button>
       </div>
     </header>
     <main>

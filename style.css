@@ -92,36 +92,34 @@ body {
   background-color: var(--containergrey);
   flex-direction: column;
   align-items: flex-start;
-  width: 300px;
+  width: 170px;
   height: 80px;
   border-radius: 5px;
   position: absolute;
-  margin-left: 73vw;
+  margin-left: 78vw;
   font-size: 0.8rem;
-  margin-top: -8px;
+  margin-top: -28px;
   visibility: hidden;
 }
-.sortmenu input {
-  opacity: 0;
-  position: fixed;
-  width: 0;
-}
-.sortmenu div label {
+
+.sortmenu button {
+  border: none;
+  border-radius: 3px;
+  width: 160px;
   color: var(--maintext);
-  width: 280px;
-  border-radius: 5px;
+  font-size: 0.8rem;
   margin: 5px;
   padding: 5px;
-  display: inline-block;
+  background-color: var(--containergrey);
+  text-align: left;
+  display: flex;
 }
-.sortmenu input:checked + label {
-  background-color: var(--containerhover);
+.checked {
+  background-color: var(--containerhover) !important;
 }
-.sortName,
-.sortDate {
-  background-color: var(--basegrey);
-  border: none;
-  color: var(--maintext);
+.ascOrdec {
+  color: var(--blue);
+  margin-left: auto;
 }
 /*delete all confirmation block*/
 .model {
@@ -301,9 +299,6 @@ main {
   opacity: 0.5;
 }
 
-.dragging {
-  opacity: 0.5;
-}
 .bordertop {
   border: 5px solid var(--blue);
 }

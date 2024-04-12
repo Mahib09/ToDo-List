@@ -24,6 +24,7 @@ const taskTemplate = document.getElementById("task-template"); // task template 
 const model = document.querySelector(".model"); //confirm model for delete all task
 const confirmbtn = document.querySelector(".confirmationDelete"); //confirm btn for delete all task
 const cancelbtn = document.querySelector(".confirmationCancel"); //cancel btn for delete all task
+const sortModel = document.querySelector(".sortmenu");
 const LOCAL_STORAGE_LIST_KEY = "task.lists"; //stores listin local storage
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId"; //stores selected list in local storage
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []; // get list from localstorage
@@ -289,18 +290,54 @@ cancelbtn.addEventListener("click", () => {
   model.classList.remove("show");
   model.classList.add("hide");
 });
+
 //Sort Alphabetically
 let asc = true; // declare to check if the sorting is ascending or desending
+const byname = sortModel.querySelector(".byname");
+const bydate = sortModel.querySelector(".bydate");
 sortTaskButton.addEventListener("click", () => {
+  sortModel.classList.toggle("show");
+});
+bydate.addEventListener("click", () => {
   const selectedList = lists.find((list) => list.id === selectedListId);
+  const ascdec = bydate.querySelector(".ascOrdec");
+  byname.classList.remove("checked");
+  bydate.classList.add("checked");
+  if (asc) {
+    selectedList.task.todo.sort((a, b) => a.id.localeCompare(b.id));
+    selectedList.task.inprogress.sort((a, b) => a.id.localeCompare(b.id));
+    selectedList.task.done.sort((a, b) => a.id.localeCompare(b.id));
+    ascdec.innerHTML = "Desc";
+    asc = false;
+  } else {
+    selectedList.task.todo.sort((a, b) => b.id.localeCompare(a.id));
+    selectedList.task.inprogress.sort((a, b) => b.id.localeCompare(a.id));
+    selectedList.task.done.sort((a, b) => b.id.localeCompare(a.id));
+    ascdec.innerHTML = "Asc";
+    asc = true;
+  }
+  sortModel.classList.toggle("show");
+  saveandrender();
+});
+byname.addEventListener("click", () => {
+  const selectedList = lists.find((list) => list.id === selectedListId);
+  const ascdec = byname.querySelector(".ascOrdec");
+  bydate.classList.remove("checked");
+  byname.classList.add("checked");
   if (asc) {
     selectedList.task.todo.sort((a, b) => a.name.localeCompare(b.name));
+    selectedList.task.inprogress.sort((a, b) => a.name.localeCompare(b.name));
+    selectedList.task.done.sort((a, b) => a.name.localeCompare(b.name));
+    ascdec.innerText = "Desc";
     asc = false;
   } else {
     selectedList.task.todo.sort((a, b) => b.name.localeCompare(a.name));
+    selectedList.task.inprogress.sort((a, b) => b.name.localeCompare(a.name));
+    selectedList.task.done.sort((a, b) => b.name.localeCompare(a.name));
+    ascdec.innerHTML = "Asc";
     asc = true;
   }
-
+  sortModel.classList.toggle("show");
   saveandrender();
 });
 
